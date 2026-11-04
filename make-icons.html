@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#222;color:#fff;font-family:sans-serif;padding:20px">
+  <h2>Генератор иконок 🌷</h2>
+  <button onclick="makeIcon(192)">Скачать icon-192.png</button>
+  <button onclick="makeIcon(512)">Скачать icon-512.png</button>
+  <script>
+    function makeIcon(size) {
+      const c = document.createElement("canvas");
+      c.width = c.height = size;
+      const ctx = c.getContext("2d");
+      ctx.fillStyle = "#d98eac";
+      ctx.fillRect(0, 0, size, size);
+      ctx.font = `${size * 0.7}px serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("🌷", size / 2, size / 2 + size * 0.05);
+      c.toBlob(blob => {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `icon-${size}.png`;
+        a.click();
+      });
+    }
+  </script>
+</body>
+</html>
